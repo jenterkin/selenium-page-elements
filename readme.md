@@ -1,6 +1,6 @@
-# Selenium Page Models
+# Selenium Page Elements
 
-Selenium Page Models aim to make Page Objects quick and easy by allowing you to define and interact with input fields like object attributes.
+Selenium Page Elements aim to make Page Objects quick and easy by allowing you to define and interact with input fields like object attributes.
 
 ```python
 # Page Object
@@ -44,6 +44,6 @@ def test_successful_login():
     login_page.login(
         username='jsmith',
         password='hunter2',
-        False)
+        stay_signed_in=False)
     assert driver.current_page == HomePage.url
 ```
