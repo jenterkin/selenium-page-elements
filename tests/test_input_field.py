@@ -1,6 +1,3 @@
-from .fixtures.page_objects import page_object
-
-
 class TestInputField:
     def test_input_get(self, page_object):
         assert page_object.input_field.value() == ''

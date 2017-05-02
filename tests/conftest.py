@@ -4,6 +4,7 @@ from time import sleep
 import sys
 import docker
 import pytest
+from tests.fixtures import *
 
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + '/..'
@@ -30,7 +31,7 @@ def create_selenium_container(client, network, links=((),)):
             environment={'GRID_TIMEOUT': '10'})
 
 
-def create_html_container(client, network):
+def create_webserver_container(client, network):
     return client.containers.run(
             image='python:3.6.1',
             name='webserver',
@@ -49,21 +50,17 @@ def create_html_container(client, network):
             """)
 
 
-def run(client, args=None):
+@pytest.fixture(scope='session', autouse=True)
+def create_containers_for_tests():
+    client = docker.from_env()
     network = client.networks.create("network1", driver="bridge")
-    webserver_container = create_html_container(client, network.name)
+    webserver_container = create_webserver_container(client, network.name)
     selenium_container = create_selenium_container(
             client,
             network.name,
             links=(('webserver', 'webserver'),))
     sleep(1) # Give Selenium some time to wake up.
-    pytest.main(args)
+    yield
     selenium_container.remove(force=True)
     webserver_container.remove(force=True)
     network.remove()
-
-
-if __name__ == '__main__':
-    client = docker.from_env()
-    pytest_args = sys.argv[1:]
-    run(client, pytest_args)
