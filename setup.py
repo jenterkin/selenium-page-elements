@@ -14,7 +14,7 @@ setup(
     description='A small library for simplifying page objects.',
     long_description=long_description,
 
-    url='https://git.snippr.io/jenterkin/selenium-page-elements',
+    url='https://github.com/jenterkin/selenium-page-elements',
 
     author='Jordan Enterkin',
     author_email='jordan.a.enterkin@gmail.com',
