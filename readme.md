@@ -50,5 +50,5 @@ To check the value of an element simply call the element with `.value()`
 The reason you have to call `.value()` on the element is because Selenium Page Elements simply returns a monkey-patched Selenium `WebElement` instance. The reason for returning the monkey-patched instance is to give you the flexibility that the Selenium library already gives you, while giving you a shortcut for giving you what you want most of the time. For instance, you can check to make sure that an element is visible and then get the value.
 ```python
     assert login_page.username.is_displayed()
-    assert login_page.username == 'mmario'
+    assert login_page.username.value() == 'mmario'
 ```
