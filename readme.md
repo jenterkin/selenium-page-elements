@@ -1,5 +1,7 @@
 # Selenium Page Elements
 
+[![Build Status](https://travis-ci.org/jenterkin/selenium-page-elements.svg?branch=master)](https://travis-ci.org/jenterkin/selenium-page-elements)
+
 ## Installation
 ```
 $ pip install selenium-page-elements
