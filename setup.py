@@ -10,7 +10,7 @@ with open(path.join(here, 'readme.md'), encoding='utf-8') as f:
 
 setup(
     name='selenium_page_elements',
-    version='0.1.2',
+    version='0.1.3',
     description='A small library for simplifying page objects.',
     long_description=long_description,
 
