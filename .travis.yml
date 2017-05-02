@@ -3,6 +3,7 @@ language: python
 python:
     - "3.6"
 before_install:
+    - pip install codecov
     - export TRAVIS=true
     - docker pull python:3.6.1
     - docker pull selenium/standalone-chrome:3.4.0
@@ -13,4 +14,6 @@ install:
     - pip install -r requirements.txt
 services: docker
 script:
-    - pytest -s tests
+    - coverage run --omit="*conftest*" -m py.test tests
+after_success:
+    - codecov

@@ -10,7 +10,7 @@ with open(path.join(here, 'readme.md'), encoding='utf-8') as f:
 
 setup(
     name='selenium_page_elements',
-    version='0.1.4',
+    version='0.1.5',
     description='A small library for simplifying page objects.',
     long_description=long_description,
 
@@ -40,6 +40,6 @@ setup(
 
     install_requires=['selenium>=3.4.0'],
     extras_require={
-        'test': ['docker>=2.2.1', 'pytest>=3.0.7']
+        'test': ['coverage>=4.3.4', 'docker>=2.2.1', 'pytest>=3.0.7']
     }
 )

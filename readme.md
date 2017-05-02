@@ -1,6 +1,7 @@
 # Selenium Page Elements
 
 [![Build Status](https://travis-ci.org/jenterkin/selenium-page-elements.svg?branch=master)](https://travis-ci.org/jenterkin/selenium-page-elements)
+[![codecov](https://codecov.io/gh/jenterkin/selenium-page-elements/branch/master/graph/badge.svg)](https://codecov.io/gh/jenterkin/selenium-page-elements)
 
 ## Installation
 ```
