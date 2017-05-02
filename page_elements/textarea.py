@@ -1,5 +1,5 @@
-from page_elements.base import Base
+from page_elements import InputField
 
 
-class TextArea(Base):
+class TextArea(InputField):
     pass
