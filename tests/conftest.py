@@ -52,6 +52,9 @@ def create_webserver_container(client, network):
 
 @pytest.fixture(scope='session', autouse=True)
 def create_containers_for_tests():
+    if 'TRAVIS' in os.environ:
+        yield
+        return
     client = docker.from_env()
     network = client.networks.create("network1", driver="bridge")
     webserver_container = create_webserver_container(client, network.name)

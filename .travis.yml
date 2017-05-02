@@ -1,0 +1,16 @@
+sudo: required
+language: python
+python:
+    - "3.6"
+before_install:
+    - export TRAVIS=true
+    - docker pull python:3.6.1
+    - docker pull selenium/standalone-chrome:3.4.0
+    - docker network create test1
+    - docker run -d --net test1 --name webserver -p 8000:8000 -v $(pwd)/tests/index.html:/www/index.html python:3.6.1 bash -c "cd /www && python -m http.server"
+    - docker run -d --net test1 -p 4444:4444 -e GRID_TIMEOUT=10 selenium/standalone-chrome:3.4.0
+install:
+    - pip install -r requirements.txt
+services: docker
+script:
+    - pytest -s tests
