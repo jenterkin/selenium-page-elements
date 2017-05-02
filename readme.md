@@ -1,11 +1,11 @@
 # Selenium Page Elements
 
-Selenium Page Elements aim to make Page Objects quick and easy by allowing you to define and interact with input fields like object attributes.
+Selenium Page Elements is a thin wrapper around the Selenium python library that aims to make Page Objects quick and easy to create and maintain by allowing you to define and interact with web elements like object attributes.
 
 ```python
 # Page Object
 from selenium.webdriver.common.by import By
-from page_elements import InputField, CheckBox
+from page_elements import Element, InputField, CheckBox
 
 
 class LoginPage:
@@ -15,7 +15,7 @@ class LoginPage:
     username = InputField(By.ID, 'username')
     password = InputField(By.ID, 'password')
     stay_signed_in = CheckBox(By.ID, 'stay-signed-in')
-    login_button = Button(By.ID, 'submit-login')
+    login_button = Element(By.XPATH, '//button[contains(text(), "Login")]')
 
     def __init__(self, driver):
         # Ensure that your page object has a Selenium webdriver in `self.driver`.
@@ -30,20 +30,19 @@ class LoginPage:
         self.password = password
         self.keep_me_signed_in = stay_signed_in
         self.login_button.click()
+```
 
+The element classes take in a Selenium `By` object and a selector, so you can select any element you would be able to with Selenium.
 
-# Tests
-from selenium import webdriver
-from your.page_objects import LoginPage, HomePage
-
-
-def test_successful_login():
-    driver = webdriver.Chrome()
+To check the value of an element simply call the element with `.value()`
+```python
     login_page = LoginPage(driver)
-    login_page.open()
-    login_page.login(
-        username='jsmith',
-        password='hunter2',
-        stay_signed_in=False)
-    assert driver.current_page == HomePage.url
+    login_page.username = 'mmario'
+    print(login_page.username.value()) # prints 'mmario'
+```
+
+The reason you have to call `.value()` on the element is because Selenium Page Elements simply returns a monkey-patched Selenium `WebElement` instance. The reason for returning the monkey-patched instance is to give you the flexibility that the Selenium library already gives you, while giving you a shortcut for giving you what you want most of the time. For instance, you can check to make sure that an element is visible and then get the value.
+```python
+    assert login_page.username.is_displayed()
+    assert login_page.username == 'mmario'
 ```
