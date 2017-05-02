@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jenterkin/selenium-page-elements.svg?branch=master)](https://travis-ci.org/jenterkin/selenium-page-elements)
 [![codecov](https://codecov.io/gh/jenterkin/selenium-page-elements/branch/master/graph/badge.svg)](https://codecov.io/gh/jenterkin/selenium-page-elements)
+[![PyPI version](https://badge.fury.io/py/selenium-page-elements.svg)](https://badge.fury.io/py/selenium-page-elements)
 
 ## Installation
 ```
