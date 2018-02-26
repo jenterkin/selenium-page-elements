@@ -1,27 +1,31 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.by import By
-from page_elements import InputField, TextArea, SelectBox, CheckBox
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.support import expected_conditions as EC
+from page_elements import InputField, TextArea, SelectBox, CheckBox, Element
 
 
-class PageObject():
+class BasePageObject():
+    def __init__(self, driver):
+        self.driver = driver
+        self.driver.get('http://webserver:8000')
+
+
+class PageObject(BasePageObject):
     input_field = InputField(By.ID, 'input')
     textarea = TextArea(By.ID, 'textarea')
     select_box = SelectBox(By.ID, 'select')
     checkbox = CheckBox(By.ID, 'checkbox')
-
-    def __init__(self, driver=None):
-        self.driver = webdriver.Remote(
-            command_executor='http://localhost:4444/wd/hub',
-            desired_capabilities=DesiredCapabilities.CHROME)
-        self.driver.get('http://webserver:8000')
+    input_field_wait = InputField(
+        By.ID, 'input', wait=EC.presence_of_element_located)
 
 
 @pytest.fixture(scope='session')
-def page_object(request):
-    page_object = PageObject()
-    def fin():
-        page_object.driver.quit()
-    request.addfinalizer(fin)
-    return page_object
+def page_object(driver):
+    return PageObject(driver)
+
+
+@pytest.fixture(scope='session')
+def page_object_with_wait(driver):
+    return PageObjectWithWait(driver)
