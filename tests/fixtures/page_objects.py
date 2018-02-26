@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from page_elements import InputField, TextArea, SelectBox, CheckBox, Element
 
 
-class BasePageObject():
+class BasePageObject(object):
     def __init__(self, driver):
         self.driver = driver
         self.driver.get('http://webserver:8000')
