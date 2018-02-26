@@ -8,7 +8,7 @@ class CheckBox(Element):
         return self.is_selected()
 
     def __set__(self, obj, value):
-        super().__set__(obj, value)
+        super(CheckBox, self).__set__(obj, value)
         if (value is True and not self.element.is_selected()) or \
            (value is False and self.element.is_selected()):
                self.element.click()

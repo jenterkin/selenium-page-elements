@@ -9,5 +9,5 @@ class SelectBox(Element):
         return self.get_attribute('value')
 
     def __set__(self, obj, value):
-        super().__set__(obj, value)
+        super(SelectBox, self).__set__(obj, value)
         Select(self.element).select_by_value(value)

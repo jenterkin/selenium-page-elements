@@ -2,7 +2,7 @@ from types import MethodType
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-class Element:
+class Element(object):
     def __init__(self, by, selector, wait=None, wait_timeout=10):
         self.by = by
         self.obj = None
