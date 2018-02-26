@@ -1,3 +1,10 @@
+class TestWaits:
+    def test_wait_until(self, page_object):
+        value = 'value'
+        page_object.input_field_with_wait = value
+        assert page_object.input_field_with_wait == value
+
+
 class TestInputField:
     def test_input_get(self, page_object):
         assert page_object.input_field.value() == ''
@@ -29,8 +36,8 @@ class TestSelectBox:
 
 class TestCheckBox:
     def test_checkbox_get(self, page_object):
-        assert page_object.checkbox.value() == False
+        assert page_object.checkbox.value() is False
 
     def test_checkbox_set(self, page_object):
         page_object.checkbox = True
-        assert page_object.checkbox.value() == True
+        assert page_object.checkbox.value() is True
