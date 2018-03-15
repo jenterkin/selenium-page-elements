@@ -13,7 +13,6 @@ $ pip install selenium-page-elements
 Selenium Page Elements is a thin wrapper around the Selenium python library that aims to make Page Objects quick and easy to create and maintain by allowing you to define and interact with web elements like object attributes.
 
 ```python
-# Page Object
 from selenium.webdriver.common.by import By
 from page_elements import Element, InputField, CheckBox
 
@@ -55,4 +54,17 @@ The reason you have to call `.value()` on the element is because Selenium Page E
 ```python
     assert login_page.username.is_displayed()
     assert login_page.username.value() == 'mmario'
+```
+
+You can also incorporate waits in your page element instantiations.
+```python
+from selenium.webdriver.support import expected_conditions as EC
+
+
+class MyPageObject:
+    my_button = Element(
+        By.ID,
+        'input',
+        wait=EC.presence_of_element_located,
+        wait_timeout=5)
 ```
