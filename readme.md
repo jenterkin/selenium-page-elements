@@ -55,3 +55,16 @@ The reason you have to call `.value()` on the element is because Selenium Page E
     assert login_page.username.is_displayed()
     assert login_page.username.value() == 'mmario'
 ```
+
+You can also incorporate waits in your page element instantiations.
+```python
+from selenium.webdriver.support import expected_conditions as EC
+
+
+class MyPageObject:
+    my_button = Element(
+        By.ID,
+        'input',
+        wait=EC.presence_of_element_located,
+        wait_timeout=5)
+```
