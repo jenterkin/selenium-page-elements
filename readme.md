@@ -13,7 +13,6 @@ $ pip install selenium-page-elements
 Selenium Page Elements is a thin wrapper around the Selenium python library that aims to make Page Objects quick and easy to create and maintain by allowing you to define and interact with web elements like object attributes.
 
 ```python
-# Page Object
 from selenium.webdriver.common.by import By
 from page_elements import Element, InputField, CheckBox
 
